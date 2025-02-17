@@ -1,0 +1,2 @@
+add_executable(endpoint_test endpoint_test.cpp)
+target_link_libraries(endpoint_test godnet)
