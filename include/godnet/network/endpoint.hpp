@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef GOD_NETWORK_ENDPOINT_HPP
-#define GOD_NETWORK_ENDPOINT_HPP
+#ifndef GODNET_NETWORK_ENDPOINT_HPP
+#define GODNET_NETWORK_ENDPOINT_HPP
 
 #include "godnet/config.hpp"
 #include "socket_types.hpp"

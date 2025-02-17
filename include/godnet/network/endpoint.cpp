@@ -6,7 +6,7 @@
     #include <arpa/inet.h>
 #endif
 
-namespace god
+namespace godnet
 {
 
 class EndpointAddressException : std::runtime_error
@@ -23,7 +23,7 @@ Endpoint::Endpoint() noexcept
     data_.v4.sin_addr.s_addr = INADDR_ANY;
 }
 
-Endpoint::Endpoint(const std::string_view& address, std::uint16_t port)
+Endpoint::Endpoint(const std::string_view& address, std::uint16_t port) noexcept(false)
 : data_()
 {
     if (::inet_pton(AF_INET, address.data(), &data_.v4.sin_addr) == 1)
@@ -53,11 +53,6 @@ std::string Endpoint::ip() const noexcept
     auto addr = isV4() ? (const void*)&data_.v4.sin_addr : (const void*)&data_.v6.sin6_addr;
     ::inet_ntop(family(), addr, ip, sizeof(ip));
     return ip;
-}
-
-std::size_t Endpoint::getSockLen() const noexcept
-{
-    return isV4() ? sizeof(data_.v4) : sizeof(data_.v6);
 }
 
 bool Endpoint::isV4() const noexcept
